@@ -1,0 +1,141 @@
+
+
+
+
+# <kbd>module</kbd> `mlforecast.grouped_array`
+
+
+
+
+
+
+---
+
+
+
+## <kbd>class</kbd> `GroupedArray`
+Array made up of different groups. Can be thought of (and iterated) as a list of arrays. 
+
+All the data is stored in a single 1d array `data`. The indices for the group boundaries are stored in another 1d array `indptr`. 
+
+
+
+### <kbd>method</kbd> `__init__`
+
+```python
+__init__(data: ndarray, indptr: ndarray)
+```
+
+
+
+
+
+
+
+
+---
+
+
+
+### <kbd>method</kbd> `append`
+
+```python
+append(new_data: ndarray) → GroupedArray
+```
+
+Appends each element of `new_data` to each existing group. Returns a copy. 
+
+---
+
+
+
+### <kbd>method</kbd> `append_several`
+
+```python
+append_several(
+    new_sizes: ndarray,
+    new_values: ndarray,
+    new_groups: ndarray
+) → GroupedArray
+```
+
+
+
+
+
+---
+
+
+
+### <kbd>method</kbd> `apply_multithreaded_transforms`
+
+```python
+apply_multithreaded_transforms(
+    transforms: Mapping[str, Union[Tuple[Any, ], _BaseLagTransform]],
+    num_threads: int,
+    updates_only: bool = False
+) → Dict[str, ndarray]
+```
+
+Apply the transformations using multithreading. 
+
+If `updates_only` then only the updates are returned. 
+
+---
+
+
+
+### <kbd>method</kbd> `apply_transforms`
+
+```python
+apply_transforms(
+    transforms: Mapping[str, Union[Tuple[Any, ], _BaseLagTransform]],
+    updates_only: bool = False
+) → Dict[str, ndarray]
+```
+
+Apply the transformations using the main process. 
+
+If `updates_only` then only the updates are returned. 
+
+---
+
+
+
+### <kbd>method</kbd> `expand_target`
+
+```python
+expand_target(max_horizon: int) → ndarray
+```
+
+
+
+
+
+---
+
+
+
+### <kbd>method</kbd> `take`
+
+```python
+take(idxs: ndarray) → GroupedArray
+```
+
+
+
+
+
+---
+
+
+
+### <kbd>method</kbd> `take_from_groups`
+
+```python
+take_from_groups(idx: Union[int, slice]) → GroupedArray
+```
+
+Takes `idx` from each group in the array. 
+
+
