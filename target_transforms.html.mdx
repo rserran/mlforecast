@@ -143,6 +143,12 @@ Name | Type | Description | Default
 `max_diffs` | <code>[int](#int)</code> | Maximum number of differences to apply. | *required*
 `n_seasons` | <code>[int](#int)</code> | Number of seasons to use to determine the number of differences. Defaults to 10. If `None` will use all samples, otherwise `max_season_length` * `n_seasons samples` will be used for the test. Smaller values will be faster but could be less accurate. | <code>10</code>
 
+**Raises:**
+
+Type | Description
+---- | -----------
+<code>[ValueError](#ValueError)</code>| If any series has fewer than `max_diffs + 4` observations. This ensures that after differencing, there are at least 4 observations remaining for STL decomposition (minimum 2 periods × minimum period of 2).
+
 ```python
 def test_scaler(sc, series):
     id_counts = counts_by_id(series, 'unique_id')
